@@ -1,0 +1,504 @@
+-- Try running me!
+SELECT 'DataCamp <3 SQL'
+AS result;
+
+
+
+
+SELECT 'SQL'
+AS result;
+
+
+
+
+SELECT title 
+FROM FILMS;
+
+
+
+SELECT release_year 
+FROM FILMS;
+
+
+SELECT name
+FROM people;
+
+
+
+
+SELECT title
+From films;
+
+
+
+SELECT title, release_year
+From films;
+
+
+
+SELECT title, release_year, country
+From films;
+
+
+SELECT *
+From films;
+
+
+
+SELECT distinct country
+from films;
+
+
+
+SELECT COUNT(*)
+FROM people;
+
+
+
+SELECT COUNT(birthdate)
+FROM people;
+
+SELECT COUNT(distinct birthdate)
+FROM people;
+
+
+
+SELECT COUNT(distinct language)
+FROM films;
+
+
+
+
+SELECT COUNT(distinct country)
+FROM films;
+
+
+SELECT *
+FROM films
+WHERE 	release_year = 2016;
+
+
+SELECT count(*)
+FROM films
+WHERE release_year < 2000;
+
+
+
+SELECT title, release_year
+FROM films
+WHERE release_year > 2000;
+
+
+
+SELECT *
+FROM films
+WHERE language = 'French';
+
+
+
+SELECT name, birthdate
+FROM people
+WHERE birthdate = '1974-11-11';
+
+
+SELECT count(*)
+FROM films
+WHERE language= 'Hindi';
+
+
+
+SELECT *
+FROM films
+WHERE certification = 'R';
+
+
+
+
+Select title, release_year
+From films
+where language ='Spanish'
+and release_year < 2000;
+
+
+
+Select *
+From films
+where language ='Spanish'
+and release_year > 2000;
+
+
+
+Select *
+From films
+where language ='Spanish'
+and release_year > 2000 AND release_year < 2010;
+
+
+
+select title, release_year
+from films
+Where release_year >= 1990 and release_year <= 1999;
+
+
+
+select title, release_year
+from films
+where release_year between 1990 and 2000;
+
+
+
+select title, release_year
+from films
+where release_year between 1990 and 2000
+and budget > 100000000;
+
+select title, release_year
+from films
+where release_year between 1990 and 2000
+and budget > 100000000
+and language = 'Spanish';
+
+
+select title, release_year
+from films
+where release_year between 1990 and 2000
+and budget > 100000000
+and (language = 'Spanish' or language = 'French');
+
+
+
+select title, release_year
+from films
+where release_year between 1990 and 2000
+and budget > 100000000
+and (language = 'Spanish' or language = 'French');
+
+
+SELECT title, language
+FROM films
+WHERE language IN ('English', 'Spanish', 'French');
+
+
+SELECT title, certification
+FROM films
+WHERE certification IN ('NC-17' , 'R');
+
+
+
+select name
+from people
+where deathdate is null;
+
+
+
+select title
+from films
+where budget is null;
+
+
+select count(title)
+from films
+where language is null;
+
+
+select name
+from people
+where name like 'B%';
+
+
+select name
+from people
+where name like '_r%';
+
+
+select name
+from people
+where name not like 'A%';
+
+
+
+SELECT SUM(duration)
+FROM films;
+
+
+SELECT AVG(duration)
+FROM films;
+
+
+SELECT min(duration)
+FROM films;
+
+
+SELECT max(duration)
+FROM films;
+
+select sum(gross)
+from films;
+
+
+select avg(gross)
+from films;
+
+
+select min(gross)
+from films;
+
+
+select max(gross)
+from films;
+
+
+
+select sum(gross)
+from films
+where release_year >= 2000;
+
+
+select avg(gross)
+from films
+where title like 'A%'
+--where release_year >= 2000;
+
+
+select min(gross)
+from films
+--where title like 'A%'
+where release_year = 1994;
+
+
+
+select max(gross)
+from films
+--where title like 'A%'
+where release_year between 2000 and 2012;
+
+
+select title, (gross-budget) as net_profit
+from films;
+
+
+
+select title, (duration/60.0) as duration_hours
+from films;
+
+
+select (avg(duration/60.0)) as avg_duration_hours
+from films;
+
+
+
+-- get the count(deathdate) and multiply by 100.0
+-- then divide by count(*) 
+SELECT COUNT(deathdate) * 100.0 / COUNT(*) AS percentage_dead
+FROM people;
+
+
+-- get the count(deathdate) and multiply by 100.0
+-- then divide by count(*) 
+SELECT max(release_year) -min(release_year) AS difference
+FROM films;
+
+
+
+-- get the count(deathdate) and multiply by 100.0
+-- then divide by count(*) 
+SELECT (max(release_year) -min(release_year)) /10.0 AS number_of_decades
+FROM films;
+
+
+
+select name
+from people
+order by name;
+
+
+
+select name
+from people
+order by birthdate asc;
+
+
+select birthdate, name
+from people
+order by birthdate asc;
+
+select title, release_year
+from films
+where release_year = 2000 or release_year = 2012
+order by release_year;
+
+
+SELECT *
+FROM films
+WHERE release_year <> 2015
+ORDER BY duration;
+
+
+SELECT title, gross
+FROM films
+WHERE title like 'M%'
+ORDER BY title;
+
+
+select film_id,	imdb_score
+from reviews
+order by imdb_score ;
+
+
+select title
+from films
+order by title desc;
+
+
+
+select title, duration
+from films
+order by duration desc;
+
+
+
+select name, birthdate
+from people
+order by birthdate, name;
+
+
+
+select release_year, duration, title
+from films
+order by release_year,	duration;
+
+
+
+select 	certification, release_year, title
+from films
+order by certification asc, release_year;
+
+
+
+select 	name, birthdate
+from people
+order by name, birthdate;
+
+
+SELECT release_year, COUNT(*)
+FROM films
+GROUP BY release_year;
+
+SELECT release_year, avg(duration)
+FROM films
+GROUP BY release_year;
+
+
+
+SELECT release_year, max(budget)
+FROM films
+GROUP BY release_year;
+
+
+
+SELECT 	imdb_score, count(*)
+FROM reviews
+GROUP BY imdb_score;
+
+
+select release_year, min(gross)
+from films
+group by release_year;
+
+
+select language, sum(gross)
+from films
+group by language;
+
+select country, sum(budget)
+from films
+group by country;
+
+
+
+select release_year, country, max(budget)
+from films
+group by release_year, country;
+
+
+select release_year, country, min(gross)
+from films
+group by release_year, country
+order by country, release_year;
+
+
+select release_year, budget, gross
+from films;
+
+SELECT release_year, budget, gross
+FROM films
+WHERE release_year > 1990;
+
+
+select release_year
+from films
+where release_year > 1990
+group by release_year;
+
+
+select release_year, avg(budget) as avg_budget, avg(gross) as avg_gross
+from films
+where release_year > 1990
+group by release_year;
+
+
+
+select release_year, avg(budget) as avg_budget, avg(gross) as avg_gross
+from films
+where release_year > 1990 
+group by release_year
+having avg(budget) > 60000000;
+
+
+
+select release_year, avg(budget) as avg_budget, avg(gross) as avg_gross
+from films
+where release_year > 1990 
+group by release_year
+having avg(budget) > 60000000
+order by avg_gross desc;
+
+
+
+-- select country, average budget, average gross
+select country, avg(budget) as avg_budget, avg(gross) as avg_gross, count(title)
+-- from the films table
+from films 
+-- group by country 
+group by country
+-- where the country has a title count greater than 10
+having count(title) > 10
+-- order by country
+order by country
+-- limit to only show 5 results
+limit 5;
+
+
+
+
+SELECT title, imdb_score
+FROM films
+JOIN reviews
+ON films.id = reviews.film_id
+WHERE title = 'To Kill a Mockingbird';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
